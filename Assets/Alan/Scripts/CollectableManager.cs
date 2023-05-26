@@ -46,4 +46,10 @@ public class CollectableManager : MonoBehaviour
       collectableSo.currentCollectable = currentCollectables;
       colletableTXT.text = currentCollectables.ToString();
    }
+
+   public void ResetCollectable()
+   {
+      collectableSo.currentCollectable = 0;
+      colletableTXT.text = currentCollectables.ToString();
+   }
 }
