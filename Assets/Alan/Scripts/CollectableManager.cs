@@ -10,10 +10,11 @@ public class CollectableManager : MonoBehaviour
    public static CollectableManager Instance;
    
    [Header("Collectable Configuration")] 
+   
+   [HideInInspector] public AudioSource colletableAudio;
+   
    public int collectableAmount;
    public GameObject collectableFX;
-   public AudioSource colletableAudio;
-   
    private int currentCollectables; 
    
    [Header("Collectable Data")]
