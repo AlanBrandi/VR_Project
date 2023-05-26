@@ -11,7 +11,7 @@ public class Collectable : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             CollectableManager.Instance.AddCollectable();
-            Instantiate(CollectableManager.Instance.collectableFX, transform.position, Quaternion.identity); 
+            // Instantiate(CollectableManager.Instance.collectableFX, transform.position, Quaternion.identity); 
             CollectableManager.Instance.colletableAudio.pitch = Random.Range(.9f, 1.3f);
             CollectableManager.Instance.colletableAudio.Play();
             Destroy(gameObject);
