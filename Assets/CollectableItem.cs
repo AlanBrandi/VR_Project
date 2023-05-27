@@ -9,7 +9,7 @@ public class CollectableItem : MonoBehaviour, IGvrPointerHoverHandler
     [SerializeField] GameObject _item;
     public void OnGvrPointerHover(PointerEventData eventData)
     {
-        InventoryManager.Instance.AddItem(_item, 5);
+        InventoryManager.Instance.AddItem(_item, 1);
         Destroy(gameObject);
     }
 }

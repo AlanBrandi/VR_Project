@@ -128,7 +128,7 @@ public class InventoryManager : MonoBehaviour
         }
         CheckSlots();
     }
-
+    #region UnusedCode
     /*public void RemoveItem(int ID, int amount)
     {
         for (int i = 0; i < slots.Count; i++)
@@ -146,30 +146,26 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }*/
+    #endregion 
     public void UseItem(int ID, int amount)
     {
-        bool itemUsed = false; // Flag to track if the item has been used
-
+        bool itemUsed = false;
         for (int i = 0; i < slots.Count; i++)
         {
             Slot slot = slots[i].GetComponent<Slot>();
             if (slot != null && slot.GetItemID() == ID)
             {
                 InventoryItem selectedSlotItem = slots[i].GetComponentInChildren<InventoryItem>();
-
                 if (selectedSlotItem.amount >= amount)
                 {
                     if (selectedSlotItem.itemData.holdable)
                     {
-                        // Handle holdable item logic here
                     }
                     else
                     {
                         selectedSlotItem.amount -= amount;
                     }
-
-                    // Update UI or perform other necessary actions
-                    selectedSlotItem.UpdateUI(); // Add this line if you have an UpdateUI method in InventoryItem to update the item's UI
+                    selectedSlotItem.UpdateUI();
 
                     if (selectedSlotItem.amount <= 0)
                     {
@@ -177,12 +173,11 @@ public class InventoryManager : MonoBehaviour
                         isFull[i] = false;
                     }
 
-                    itemUsed = true; // Set the flag to indicate that the item has been used
-                    break; // Exit the loop after using the item
+                    itemUsed = true;
+                    break;
                 }
             }
         }
-
         if (!itemUsed)
         {
             Debug.Log("Wrong item or not enough items to complete action.");

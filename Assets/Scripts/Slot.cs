@@ -17,6 +17,7 @@ public class Slot : MonoBehaviour
         inventoryManager = GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>();
     }
 
+    #region OldUpdate
     /*private void Update()
     {
         if (transform.childCount > 0)
@@ -27,6 +28,7 @@ public class Slot : MonoBehaviour
             }
         }
     }*/ //Old destroy item method. 
+    #endregion
 
     public void SelectDeselect(Sprite selectSprite)
     {
@@ -96,6 +98,6 @@ public class Slot : MonoBehaviour
                 return item.itemData.ID;
             }
         }
-        return -1; // Return -1 if no item found in the slot
+        return -1;
     }
 }
