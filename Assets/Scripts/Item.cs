@@ -6,8 +6,8 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public int ID;
+    public int maxStack;
+    public bool holdable;
     public string name;
     public Sprite icon;
-
-    public int maxStack;
 }

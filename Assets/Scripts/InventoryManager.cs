@@ -9,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] AudioClip pickUpClip;
     [SerializeField] AudioClip pickDownClip;
     [SerializeField] AudioClip pickBothClip;
+    [SerializeField] Grab playerGrab;
 
     public Transform inventorySlotHolder;
 
@@ -72,7 +73,6 @@ public class InventoryManager : MonoBehaviour
                 slots[i].GetComponent<Slot>().ID = i;
             }
         }
-
     }
 
     void CheckSlots() //Check if slots are full.
@@ -92,24 +92,103 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItem(GameObject item, int amount)
     {
-        for (int i = 0; i < amount; i++)
+        int remainingAmount = amount;
+        for (int i = 0; i < slots.Count; i++)
         {
-            for (int x = 0; x < slots.Count; x++)
+            InventoryItem slotItem = slots[i].GetComponentInChildren<InventoryItem>();
+            if (slotItem != null && slotItem.itemData.ID == item.GetComponent<InventoryItem>().itemData.ID && slotItem.amount < slotItem.itemData.maxStack)
             {
-                if (isFull[x] == false)
+                int spaceAvailable = slotItem.itemData.maxStack - slotItem.amount;
+                int itemsToAdd = Mathf.Min(remainingAmount, spaceAvailable);
+                slotItem.amount += itemsToAdd;
+                remainingAmount -= itemsToAdd;
+                if (remainingAmount <= 0)
                 {
-                    Instantiate(item, slots[x]);
-                    CheckSlots();
-                    return;
-                }
-                else
-                {
-                    Debug.Log("Slot is full.");
+                    break; // No more items to add
                 }
             }
         }
-        Debug.Log("No inventory space.");
+
+        for (int i = 0; i < slots.Count; i++)
+        {
+            InventoryItem slotItem = slots[i].GetComponentInChildren<InventoryItem>();
+            if (remainingAmount <= 0)
+            {
+                break; // No more items to add
+            }
+            if (slotItem == null)
+            {
+                int itemsToAdd = Mathf.Min(remainingAmount, item.GetComponent<InventoryItem>().itemData.maxStack);
+
+                GameObject newItem = Instantiate(item, slots[i]);
+                newItem.GetComponent<InventoryItem>().amount = itemsToAdd;
+
+                remainingAmount -= itemsToAdd;
+            }
+        }
+        CheckSlots();
     }
+
+    /*public void RemoveItem(int ID, int amount)
+    {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            if (isFull[i] == true)
+            {
+                if (slots[i].GetChild(0).GetComponent<InventoryItem>().itemData.ID == ID && slots[i].GetChild(0).GetComponent<InventoryItem>().amount >= amount)
+                {
+                    slots[i].GetChild(0).GetComponent<InventoryItem>().amount -= amount;
+                }
+                else
+                {
+                    Debug.Log("Not enough items to complete action.");
+                }
+            }
+        }
+    }*/
+    public void UseItem(int ID, int amount)
+    {
+        bool itemUsed = false; // Flag to track if the item has been used
+
+        for (int i = 0; i < slots.Count; i++)
+        {
+            Slot slot = slots[i].GetComponent<Slot>();
+            if (slot != null && slot.GetItemID() == ID)
+            {
+                InventoryItem selectedSlotItem = slots[i].GetComponentInChildren<InventoryItem>();
+
+                if (selectedSlotItem.amount >= amount)
+                {
+                    if (selectedSlotItem.itemData.holdable)
+                    {
+                        // Handle holdable item logic here
+                    }
+                    else
+                    {
+                        selectedSlotItem.amount -= amount;
+                    }
+
+                    // Update UI or perform other necessary actions
+                    selectedSlotItem.UpdateUI(); // Add this line if you have an UpdateUI method in InventoryItem to update the item's UI
+
+                    if (selectedSlotItem.amount <= 0)
+                    {
+                        Destroy(selectedSlotItem.gameObject);
+                        isFull[i] = false;
+                    }
+
+                    itemUsed = true; // Set the flag to indicate that the item has been used
+                    break; // Exit the loop after using the item
+                }
+            }
+        }
+
+        if (!itemUsed)
+        {
+            Debug.Log("Wrong item or not enough items to complete action.");
+        }
+    }
+
 
     public void PickupDropInventory()
     {

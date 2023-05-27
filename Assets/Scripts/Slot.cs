@@ -6,13 +6,27 @@ using UnityEngine.UI;
 public class Slot : MonoBehaviour
 {
     public int ID;
+    private int itemID;
     public InventoryManager inventoryManager;
     private double _selectTimer;
+    private bool _stoppedTimer;
+    private Coroutine timerCoroutine;
 
     private void Start()
     {
         inventoryManager = GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>();
     }
+
+    /*private void Update()
+    {
+        if (transform.childCount > 0)
+        {
+            if (transform.GetChild(0).GetComponent<InventoryItem>().amount <= 0)
+            {
+                Destroy(transform.GetChild(0).gameObject);
+            }
+        }
+    }*/ //Old destroy item method. 
 
     public void SelectDeselect(Sprite selectSprite)
     {
@@ -24,34 +38,64 @@ public class Slot : MonoBehaviour
         Instantiate(itemMenu);
     }
 
+    #region VRSelectionTimer
     public void StartTimer()
     {
-        StartCoroutine(Timer());
+        itemID = transform.GetChild(0).GetComponent<InventoryItem>().itemData.ID;
+        if (timerCoroutine == null)
+        {
+            timerCoroutine = StartCoroutine(Timer(itemID));
+        }
     }
 
     public void EndTimer()
     {
-        StopCoroutine(Timer());
-        _selectTimer = 0;
+        _stoppedTimer = true;
+        if (timerCoroutine != null)
+        {
+            StopCoroutine(timerCoroutine);
+            timerCoroutine = null;
+        }
+        _selectTimer = 0f;
+        _stoppedTimer = false;
     }
 
-    IEnumerator Timer()
+
+    IEnumerator Timer(int id)
     {
-        while (_selectTimer <= 2)
+        float timer = 0f;
+        while (!_stoppedTimer)
         {
-            Debug.Log(_selectTimer);
-            _selectTimer += .1;
-            if (_selectTimer > 2)
+            timer += Time.deltaTime;
+            if (timer > 2f)
             {
-                //RemoveItem
+                inventoryManager.UseItem(id, 1);
+                timer = 0f;
             }
-            yield return new WaitForSecondsRealtime(.1f);
+            yield return null;
         }
+        timer = 0f;
+        _stoppedTimer = false;
+        timerCoroutine = null;
     }
+    #endregion
 
     public void SetID()
     {
         inventoryManager.currentSlot = ID;
         inventoryManager.PickupDropInventory();
+    }
+
+    public int GetItemID()
+    {
+        if (transform.childCount > 0)
+        {
+            InventoryItem item = transform.GetChild(0).GetComponent<InventoryItem>();
+            if (item != null)
+            {
+                return item.itemData.ID;
+            }
+        }
+        return -1; // Return -1 if no item found in the slot
     }
 }
