@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] AudioClip pickDownClip;
     [SerializeField] AudioClip pickBothClip;
     [SerializeField] Grab playerGrab;
+    [SerializeField] GameObject key;
 
     public Transform inventorySlotHolder;
 
@@ -104,7 +105,7 @@ public class InventoryManager : MonoBehaviour
                 remainingAmount -= itemsToAdd;
                 if (remainingAmount <= 0)
                 {
-                    break; // No more items to add
+                    break;
                 }
             }
         }
@@ -114,7 +115,7 @@ public class InventoryManager : MonoBehaviour
             InventoryItem slotItem = slots[i].GetComponentInChildren<InventoryItem>();
             if (remainingAmount <= 0)
             {
-                break; // No more items to add
+                break;
             }
             if (slotItem == null)
             {
@@ -160,19 +161,15 @@ public class InventoryManager : MonoBehaviour
                 {
                     if (selectedSlotItem.itemData.holdable)
                     {
+                        key.SetActive(true);
                     }
-                    else
-                    {
-                        selectedSlotItem.amount -= amount;
-                    }
+                    selectedSlotItem.amount -= amount;
                     selectedSlotItem.UpdateUI();
-
                     if (selectedSlotItem.amount <= 0)
                     {
                         Destroy(selectedSlotItem.gameObject);
                         isFull[i] = false;
                     }
-
                     itemUsed = true;
                     break;
                 }

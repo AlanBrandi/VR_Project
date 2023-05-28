@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.05554507, g: 0.062220365, b: 0.07268556, a: 1}
+  m_IndirectSpecularColor: {r: 0.06286627, g: 0.069702215, b: 0.08123767, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3962,7 +3962,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: AlanTest
+            m_StringArgument: SampleScene
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!65 &2043456177

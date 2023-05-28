@@ -17,7 +17,7 @@ public class Slot : MonoBehaviour
         inventoryManager = GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>();
     }
 
-    #region OldUpdate
+    #region
     /*private void Update()
     {
         if (transform.childCount > 0)
@@ -46,6 +46,7 @@ public class Slot : MonoBehaviour
         itemID = transform.GetChild(0).GetComponent<InventoryItem>().itemData.ID;
         if (timerCoroutine == null)
         {
+            //Cursor animation starts here.
             timerCoroutine = StartCoroutine(Timer(itemID));
         }
     }
@@ -55,6 +56,7 @@ public class Slot : MonoBehaviour
         _stoppedTimer = true;
         if (timerCoroutine != null)
         {
+            //Cursor animation gets interrupted here.
             StopCoroutine(timerCoroutine);
             timerCoroutine = null;
         }
@@ -68,9 +70,10 @@ public class Slot : MonoBehaviour
         float timer = 0f;
         while (!_stoppedTimer)
         {
-            timer += Time.deltaTime;
+            timer += Time.fixedDeltaTime;
             if (timer > 2f)
             {
+                //Cursor animation ends here.
                 inventoryManager.UseItem(id, 1);
                 timer = 0f;
             }

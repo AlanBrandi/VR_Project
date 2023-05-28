@@ -16,4 +16,4 @@ MonoBehaviour:
   maxStack: 1
   holdable: 1
   name: Key
-  icon: {fileID: 21300000, guid: e5600378dd761e64d9423790c482bf36, type: 3}
+  icon: {fileID: 21300000, guid: 7d4fd41357790814daa593102da9f0af, type: 3}
