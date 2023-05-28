@@ -43,11 +43,14 @@ public class Slot : MonoBehaviour
     #region VRSelectionTimer
     public void StartTimer()
     {
-        itemID = transform.GetChild(0).GetComponent<InventoryItem>().itemData.ID;
-        if (timerCoroutine == null)
+        if (transform.childCount > 0)
         {
-            //Cursor animation starts here.
-            timerCoroutine = StartCoroutine(Timer(itemID));
+            itemID = transform.GetChild(0).GetComponent<InventoryItem>().itemData.ID;
+            if (timerCoroutine == null)
+            {
+                //Cursor animation starts here.
+                timerCoroutine = StartCoroutine(Timer(itemID));
+            }
         }
     }
 
