@@ -28,7 +28,7 @@ public class TimeManager : MonoBehaviour
         {
             _currentTime -= interval;
             timerDisplay.color = Color.red;
-            Invoke("ChangeColorToNormal",2);
+            Invoke("ChangeColorToNormal",0.5f);
             healthSystem.Damage(damagePerTime);
         }
 
