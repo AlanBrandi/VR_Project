@@ -6,11 +6,20 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance = null;
     public GameObject inventory;
     AudioSource audioSource;
+    [HideInInspector]
     [SerializeField] AudioClip pickUpClip;
+    
+    [HideInInspector]
     [SerializeField] AudioClip pickDownClip;
+    
+    [HideInInspector]
     [SerializeField] AudioClip pickBothClip;
+    
+    [HideInInspector]
     [SerializeField] Grab playerGrab;
+    
     [SerializeField] GameObject key;
+    [SerializeField] HealthSystem healthSystem;
 
     public Transform inventorySlotHolder;
 
@@ -162,6 +171,13 @@ public class InventoryManager : MonoBehaviour
                     if (selectedSlotItem.itemData.holdable)
                     {
                         key.SetActive(true);
+                    }
+                    else
+                    {
+                        if (healthSystem.GetCurrentHealth() != healthSystem.maxHealth)
+                        {
+                            healthSystem.UsePowerUp(25);
+                        }
                     }
                     selectedSlotItem.amount -= amount;
                     selectedSlotItem.UpdateUI();
