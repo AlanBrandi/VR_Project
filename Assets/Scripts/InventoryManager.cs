@@ -6,18 +6,9 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance = null;
     public GameObject inventory;
     AudioSource audioSource;
-    [HideInInspector]
-    [SerializeField] AudioClip pickUpClip;
-    
-    [HideInInspector]
+    /*[SerializeField] AudioClip pickUpClip;
     [SerializeField] AudioClip pickDownClip;
-    
-    [HideInInspector]
-    [SerializeField] AudioClip pickBothClip;
-    
-    [HideInInspector]
-    [SerializeField] Grab playerGrab;
-    
+    [SerializeField] AudioClip pickBothClip;*/
     [SerializeField] GameObject key;
     [SerializeField] HealthSystem healthSystem;
 
@@ -112,6 +103,7 @@ public class InventoryManager : MonoBehaviour
                 int itemsToAdd = Mathf.Min(remainingAmount, spaceAvailable);
                 slotItem.amount += itemsToAdd;
                 remainingAmount -= itemsToAdd;
+                slotItem.UpdateUI();
                 if (remainingAmount <= 0)
                 {
                     break;
@@ -176,7 +168,7 @@ public class InventoryManager : MonoBehaviour
                     {
                         if (healthSystem.GetCurrentHealth() != healthSystem.maxHealth)
                         {
-                            healthSystem.UsePowerUp(25);
+                            healthSystem.UsePowerUp(selectedSlotItem.healthUp);
                         }
                     }
                     selectedSlotItem.amount -= amount;
@@ -197,8 +189,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-
-    public void PickupDropInventory()
+    /*public void PickupDropInventory()
     {
         if (slots[currentSlot].childCount > 0 && cursor.childCount < 1)
         {
@@ -237,7 +228,7 @@ public class InventoryManager : MonoBehaviour
             }
         }
         CheckSlots();
-    }
+    }*/ //Old mouse method
 
     public void ToggleInventory()
     {

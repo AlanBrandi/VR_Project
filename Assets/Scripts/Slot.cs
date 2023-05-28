@@ -17,7 +17,6 @@ public class Slot : MonoBehaviour
         inventoryManager = GameObject.FindGameObjectWithTag("InventoryManager").GetComponent<InventoryManager>();
     }
 
-    #region
     /*private void Update()
     {
         if (transform.childCount > 0)
@@ -28,7 +27,6 @@ public class Slot : MonoBehaviour
             }
         }
     }*/ //Old destroy item method. 
-    #endregion
 
     public void SelectDeselect(Sprite selectSprite)
     {
@@ -91,7 +89,7 @@ public class Slot : MonoBehaviour
     public void SetID()
     {
         inventoryManager.currentSlot = ID;
-        inventoryManager.PickupDropInventory();
+        //inventoryManager.PickupDropInventory();
     }
 
     public int GetItemID()
