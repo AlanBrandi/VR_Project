@@ -5,29 +5,37 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Rendering.PostProcessing;
 using Random = UnityEngine.Random;
 
 public class HealthSystem : MonoBehaviour
 {
     [Header("Set life")] public float maxHealth;
 
-    [Header("Data")] [SerializeField] private ScoreData scoreData;
+    [Header("Data")] 
+    [SerializeField] private ScoreData scoreData;
     [SerializeField] private float currentHealth;
 
-    [Header("Audio")] [SerializeField] private AudioSource hitSound;
+    [Header("Audio")] 
+    [SerializeField] private AudioSource hitSound;
 
     [Header("Canvas")] 
     [SerializeField] private GameObject hitPanel;
     [SerializeField] private GameObject heartIcon;
     [SerializeField] private TMP_Text healthText;
     [SerializeField] private float smoothDecreaseDuration = 0.5f;
+    
+    [Header("Feedback")] 
+    [SerializeField] private PostProcessVolume processVolume;
 
+    private Vignette vignette;
 
     private bool died = false;
 
     private void Awake()
     {
         currentHealth = maxHealth;
+        processVolume.profile.TryGetSettings(out vignette);
     }
 
     private void Start()
@@ -54,7 +62,14 @@ public class HealthSystem : MonoBehaviour
             SceneManager.LoadScene("GameOver");
         }
     }
+    private void FixedUpdate()
+    {
+        float healthPercentage = currentHealth / 100f; // Calcula a porcentagem de vida
 
+        float intensity = Mathf.Lerp(0f, 0.7f, 1f - healthPercentage); // Interpola linearmente entre 0 e 0.7
+
+        vignette.intensity.Override(intensity);
+    }
     private IEnumerator SmoothDecreaseHealth(float damage)
     {
         float damagePerTick = damage / smoothDecreaseDuration;
