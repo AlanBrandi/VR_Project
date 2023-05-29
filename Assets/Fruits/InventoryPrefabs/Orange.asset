@@ -16,4 +16,4 @@ MonoBehaviour:
   maxStack: 5
   holdable: 0
   name: Orange
-  icon: {fileID: 21300000, guid: 9c0d6ec706e01ce448aea81584af092b, type: 3}
+  icon: {fileID: 21300000, guid: 34ee05522bcf48c4dac8e5755e3491e5, type: 3}
