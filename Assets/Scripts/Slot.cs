@@ -71,7 +71,7 @@ public class Slot : MonoBehaviour
         float timer = 0f;
         while (!_stoppedTimer)
         {
-            timer += Time.fixedDeltaTime;
+            timer += Time.fixedDeltaTime*.35f;
             if (timer > 2f)
             {
                 //Cursor animation ends here.

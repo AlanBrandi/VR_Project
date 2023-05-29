@@ -7,9 +7,10 @@ using UnityEngine.UIElements;
 public class CollectableItem : MonoBehaviour, IGvrPointerHoverHandler
 {
     [SerializeField] GameObject _item;
+    [SerializeField] int _amount;
     public void OnGvrPointerHover(PointerEventData eventData)
     {
-        InventoryManager.Instance.AddItem(_item, 1);
+        InventoryManager.Instance.AddItem(_item, _amount);
         Destroy(gameObject);
     }
 }

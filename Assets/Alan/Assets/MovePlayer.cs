@@ -5,12 +5,13 @@ using UnityEngine;
 public class MovePlayer : MonoBehaviour
 {
     public float speed = 5;
+    public float turnSpeed = 60;
     bool isFoward = false;
     bool isBack = false;
     bool isLeft = false;
     bool isRight = false;
 
-    void Update()
+    void FixedUpdate()
     {
         if (isFoward)
         {
@@ -22,11 +23,11 @@ public class MovePlayer : MonoBehaviour
         }
         if (isLeft)
         {
-            transform.Rotate(0, ((-speed-20) * Time.fixedDeltaTime), 0);
+            transform.Rotate(0, ((-speed-turnSpeed) * Time.fixedDeltaTime), 0);
         }
         if (isRight)
         {
-            transform.Rotate(0, ((speed + 20) * Time.fixedDeltaTime), 0);
+            transform.Rotate(0, ((speed + turnSpeed) * Time.fixedDeltaTime), 0);
         }
     }
 
