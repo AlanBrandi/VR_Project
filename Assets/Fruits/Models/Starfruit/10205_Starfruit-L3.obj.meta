@@ -3,7 +3,12 @@ guid: b78b7e93d1f2d0c4b9d003b07ea07165
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: StarFruitMat
+    second: {fileID: 2100000, guid: fe51cac936143484bada3d9665023361, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
