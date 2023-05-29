@@ -90,6 +90,7 @@ public class HealthSystem : MonoBehaviour
 
             yield return null;
         }
+        
         heartIcon.GetComponent<Image>().color = Color.white;
         healthText.color = Color.white;
     }
@@ -114,6 +115,7 @@ public class HealthSystem : MonoBehaviour
     private void UpdateHealthText()
     {
         healthText.text = currentHealth.ToString("0");
+        scoreData.healthRemain = Mathf.RoundToInt(currentHealth);
     }
     public void UsePowerUp(float value)
     {

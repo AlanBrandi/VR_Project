@@ -10,7 +10,7 @@ public class MovePlayer : MonoBehaviour
     bool isLeft = false;
     bool isRight = false;
 
-    void Update()
+    void FixedUpdate()
     {
         if (isFoward)
         {
