@@ -18,6 +18,8 @@ public class TimeManager : MonoBehaviour
     [Header("Canvas")] 
     [SerializeField] private TMP_Text timerDisplay;
     
+    [Header("Data")]
+    [SerializeField] private ScoreData scoreData; //preciso salvar isso em algum data
     private float _currentTime = 0f; 
 
     private void Update()
@@ -42,7 +44,7 @@ public class TimeManager : MonoBehaviour
         int minutes = (int)(maxTime / 60);
         int seconds = (int)(maxTime % 60);
         string formattedTime = string.Format("{0:00}:{1:00}", minutes, seconds);
-        
+        scoreData.timeRemain = maxTime;
         timerDisplay.text = formattedTime;
     }
 

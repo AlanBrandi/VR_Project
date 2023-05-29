@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601d82109f0b483449a83efe7b1bbe12, type: 3}
   m_Name: ScoreData
   m_EditorClassIdentifier: 
+  scoreDataBest: {fileID: 11400000, guid: 74d2630fa96672b4795d957128458e2c, type: 2}
   timeRemain: 0
-  healthRemain: 0
+  healthRemain: 95
   pointsCollected: 0
   healthItens: 0
   escaped: 0
+  scoreTotal: 0

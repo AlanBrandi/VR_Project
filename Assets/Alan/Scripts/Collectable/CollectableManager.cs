@@ -18,6 +18,7 @@ public class CollectableManager : MonoBehaviour
    
    [Header("Collectable Data")]
    [SerializeField] private CollectableSO collectableSo;
+   [SerializeField] private ScoreData scoreData;
    
    [Header("Canvas")]
    [SerializeField] private TMP_Text colletableTXT;
@@ -43,6 +44,7 @@ public class CollectableManager : MonoBehaviour
    {
       currentCollectables += collectableAmount;
       collectableSo.currentCollectable = currentCollectables;
+      scoreData.pointsCollected = collectableSo.currentCollectable;
       colletableTXT.text = currentCollectables.ToString();
    }
 
