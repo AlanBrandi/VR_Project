@@ -130,7 +130,6 @@ public class InventoryManager : MonoBehaviour
         }
         CheckSlots();
     }
-    #region UnusedCode
     /*public void RemoveItem(int ID, int amount)
     {
         for (int i = 0; i < slots.Count; i++)
@@ -148,7 +147,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }*/
-    #endregion 
     public void UseItem(int ID, int amount)
     {
         bool itemUsed = false;
@@ -162,16 +160,21 @@ public class InventoryManager : MonoBehaviour
                 {
                     if (selectedSlotItem.itemData.holdable)
                     {
+                        selectedSlotItem.amount -= amount;
+                        audioSource.clip = Resources.Load("UseKey") as AudioClip;
+                        audioSource.Play();
                         key.SetActive(true);
                     }
                     else
                     {
-                        if (healthSystem.GetCurrentHealth() != healthSystem.maxHealth)
+                        if (healthSystem.GetCurrentHealth() < healthSystem.maxHealth)
                         {
+                            selectedSlotItem.amount -= amount;
                             healthSystem.UsePowerUp(selectedSlotItem.healthUp);
+                            audioSource.clip = Resources.Load("RecoverHealthSFx") as AudioClip;
+                            audioSource.Play();
                         }
                     }
-                    selectedSlotItem.amount -= amount;
                     selectedSlotItem.UpdateUI();
                     if (selectedSlotItem.amount <= 0)
                     {
@@ -233,5 +236,11 @@ public class InventoryManager : MonoBehaviour
     public void ToggleInventory()
     {
         inventory.SetActive(!inventory.activeSelf);
+    }
+
+    public void PlaySound()
+    {
+        audioSource.clip = Resources.Load("DoorOpen") as AudioClip;
+        audioSource.Play();
     }
 }

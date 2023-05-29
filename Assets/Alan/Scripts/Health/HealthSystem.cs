@@ -46,6 +46,7 @@ public class HealthSystem : MonoBehaviour
 
     public float GetCurrentHealth()
     {
+        Debug.Log(currentHealth);
         return currentHealth;
     }
 

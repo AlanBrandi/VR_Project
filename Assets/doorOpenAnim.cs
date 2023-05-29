@@ -47,6 +47,7 @@ public class doorOpenAnim : MonoBehaviour
         if (other.CompareTag("Key"))
         {
             other.gameObject.SetActive(false);
+            InventoryManager.Instance.PlaySound();
             chaveDentro = true;
         }
     }
