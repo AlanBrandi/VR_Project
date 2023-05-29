@@ -16,4 +16,4 @@ MonoBehaviour:
   maxStack: 20
   holdable: 0
   name: Strawberry
-  icon: {fileID: 21300000, guid: 9c0d6ec706e01ce448aea81584af092b, type: 3}
+  icon: {fileID: 21300000, guid: 36e2f5a5b16ef1349bf0d590b6349cad, type: 3}
