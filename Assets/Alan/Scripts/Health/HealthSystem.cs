@@ -43,6 +43,15 @@ public class HealthSystem : MonoBehaviour
         scoreData.healthRemain = Mathf.RoundToInt(currentHealth);
     }
 
+    private void Update()
+    {
+        if (currentHealth <= 0)
+        {
+            died = true;
+            SceneManager.LoadScene("GameOver");
+        }
+    }
+    
 
     public float GetCurrentHealth()
     {
