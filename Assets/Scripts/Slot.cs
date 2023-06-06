@@ -75,13 +75,12 @@ public class Slot : MonoBehaviour
 
     IEnumerator Timer(int id)
     {
-        float timer = 0f;
+        timer = 0;
         float duration = 1.5f;
         float fillAmountMax = 100f;
-
         while (!_stoppedTimer)
         {
-            timer += Time.deltaTime;
+            timer += .01f;
             float normalizedTimer = timer / duration;
             float fillAmount = Mathf.Clamp(normalizedTimer * fillAmountMax, 0f, fillAmountMax);
 
@@ -89,15 +88,11 @@ public class Slot : MonoBehaviour
 
             if (timer > duration)
             {
-                // Cursor animation ends here.
                 inventoryManager.UseItem(id, 1);
                 timer = 0f;
-                StopCoroutine(Timer(1));
             }
-            
-            yield return null;
+            yield return new WaitForSecondsRealtime(.01f);
         }
-
         timer = 0f;
         _stoppedTimer = false;
         timerCoroutine = null;
