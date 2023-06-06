@@ -130,6 +130,7 @@ public class InventoryManager : MonoBehaviour
         }
         CheckSlots();
     }
+
     /*public void RemoveItem(int ID, int amount)
     {
         for (int i = 0; i < slots.Count; i++)
@@ -146,7 +147,8 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
-    }*/
+    }*/ //Old remove item code.
+
     public void UseItem(int ID, int amount)
     {
         bool itemUsed = false;
@@ -190,6 +192,22 @@ public class InventoryManager : MonoBehaviour
         {
             Debug.Log("Wrong item or not enough items to complete action.");
         }
+    }
+
+    public int GetScore()
+    {
+        int itemScore = 0;
+
+        for (int i = 0; i < slots.Count; i++)
+        {
+            InventoryItem item = slots[i].GetComponentInChildren<InventoryItem>();
+            if (item != null)
+            {
+                itemScore += item.healthUp * item.amount;
+            }
+        }
+
+        return itemScore;
     }
 
     /*public void PickupDropInventory()

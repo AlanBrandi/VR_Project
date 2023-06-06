@@ -13,6 +13,7 @@ public class EndGame : MonoBehaviour
       if (other.CompareTag("Player"))
       {
           scoreData.escaped = true;
+          scoreData.healthItems += InventoryManager.Instance.GetScore();
           SceneManager.LoadScene("GameOver");
       }
   }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class Slot : MonoBehaviour
     private double _selectTimer;
     private bool _stoppedTimer;
     private Coroutine timerCoroutine;
+    [HideInInspector] public float timer;
 
     private void Start()
     {
@@ -65,20 +67,19 @@ public class Slot : MonoBehaviour
         _stoppedTimer = false;
     }
 
-
     IEnumerator Timer(int id)
     {
-        float timer = 0f;
+        timer = 0;
         while (!_stoppedTimer)
         {
-            timer += Time.fixedDeltaTime*.35f;
-            if (timer > 2f)
+            timer += .1f;
+            if (timer > 1.5f)
             {
                 //Cursor animation ends here.
                 inventoryManager.UseItem(id, 1);
                 timer = 0f;
             }
-            yield return null;
+            yield return new WaitForSecondsRealtime(.1f);
         }
         timer = 0f;
         _stoppedTimer = false;

@@ -10,7 +10,6 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private TMP_Text bestScore;
     [SerializeField] private TMP_Text bestTime;
 
-
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

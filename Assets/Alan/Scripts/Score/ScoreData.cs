@@ -9,7 +9,7 @@ public class ScoreData : ScriptableObject
    public float timeRemain;
    public int healthRemain;
    public int pointsCollected;
-   public int healthItens;
+   public int healthItems;
    public bool escaped;
    public int scoreTotal;
    
@@ -21,7 +21,7 @@ public class ScoreData : ScriptableObject
       timeRemain = 0;
       healthRemain = 100;
       pointsCollected = 0;
-      healthItens = 0;
+      healthItems = 0;
       escaped = false;
       scoreTotal = 0;
    }
@@ -29,6 +29,7 @@ public class ScoreData : ScriptableObject
    {
       scoreTotal += Mathf.RoundToInt(timeRemain) * 100;
       scoreTotal += healthRemain * 10;
+      scoreTotal += healthItems;
       scoreTotal += pointsCollected * 100;
       if (escaped)
       {
@@ -49,7 +50,6 @@ public class ScoreData : ScriptableObject
       {
          scoreDataBest.bestScore = lastScore;
       }
-
       if (timeRemain > lastTime)
       {
          scoreDataBest.bestTime = timeRemain;
