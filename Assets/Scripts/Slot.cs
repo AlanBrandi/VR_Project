@@ -75,12 +75,14 @@ public class Slot : MonoBehaviour
 
     IEnumerator Timer(int id)
     {
-        timer = 0;
+        timer = 0f;
         float duration = 1.5f;
         float fillAmountMax = 100f;
+        float timerIncrement = 1f / duration;
+
         while (!_stoppedTimer)
         {
-            timer += .01f;
+            timer += timerIncrement * Time.deltaTime;
             float normalizedTimer = timer / duration;
             float fillAmount = Mathf.Clamp(normalizedTimer * fillAmountMax, 0f, fillAmountMax);
 
@@ -91,8 +93,9 @@ public class Slot : MonoBehaviour
                 inventoryManager.UseItem(id, 1);
                 timer = 0f;
             }
-            yield return new WaitForSecondsRealtime(.01f);
+            yield return null;
         }
+
         timer = 0f;
         _stoppedTimer = false;
         timerCoroutine = null;

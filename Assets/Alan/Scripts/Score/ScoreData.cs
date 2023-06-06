@@ -58,5 +58,7 @@ public class ScoreData : ScriptableObject
       {
          scoreDataBest.bestTime = lastTime;
       }
+        PlayerPrefs.SetFloat("BestScore",scoreDataBest.bestScore);
+        PlayerPrefs.SetFloat("BestTime", scoreDataBest.bestTime);
    }
 }

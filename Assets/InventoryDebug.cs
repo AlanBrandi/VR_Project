@@ -11,5 +11,10 @@ public class InventoryDebug : MonoBehaviour
         {
             InventoryManager.Instance.AddItem(gobject, 5);
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 10;
+        }
     }
 }

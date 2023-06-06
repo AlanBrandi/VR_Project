@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
@@ -19,13 +17,15 @@ public class MenuManager : MonoBehaviour
     {
         Application.Quit();
     }
-    
+
     private void Awake()
     {
+        scoreDataBest.bestScore = PlayerPrefs.GetFloat("BestScore");
+        scoreDataBest.bestTime = PlayerPrefs.GetFloat("BestTime");
         bestScore.text = scoreDataBest.bestScore.ToString();
-       int minutes = (int)(scoreDataBest.bestTime / 60);
-       int seconds = (int)(scoreDataBest.bestTime % 60);
-       string formattedTime = string.Format("{0:00}:{1:00}", minutes, seconds);
-       bestTime.text = formattedTime;
+        int minutes = (int)(scoreDataBest.bestTime / 60);
+        int seconds = (int)(scoreDataBest.bestTime % 60);
+        string formattedTime = string.Format("{0:00}:{1:00}", minutes, seconds);
+        bestTime.text = formattedTime;
     }
 }
