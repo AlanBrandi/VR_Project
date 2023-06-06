@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1627273862297607422}
   - component: {fileID: 95887674889748605}
   - component: {fileID: 95887674889748604}
+  - component: {fileID: -7553661494243275108}
   m_Layer: 8
   m_Name: Pills
   m_TagString: Untagged
@@ -111,6 +112,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _item: {fileID: 3594117569771859263, guid: 9a4fa297b341c744f9cb52f06705e16d, type: 3}
   _amount: 1
+--- !u!114 &-7553661494243275108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978900171287526699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 1, b: 0, a: 1}
+  outlineWidth: 8.5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7548474247915137698
 GameObject:
   m_ObjectHideFlags: 0

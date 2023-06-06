@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5154015165893098102}
   - component: {fileID: 4615068121430171327}
   - component: {fileID: 4615068121430171264}
+  - component: {fileID: -3097377400672594250}
   m_Layer: 8
   m_Name: Starfruit
   m_TagString: Untagged
@@ -60,6 +61,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _item: {fileID: 3594117569771859263, guid: c3ea116856e17344f8ba0dda24457672, type: 3}
   _amount: 1
+--- !u!114 &-3097377400672594250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5534200260999045324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 0, g: 1, b: 0, a: 1}
+  outlineWidth: 8.5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &8740017574926897749
 GameObject:
   m_ObjectHideFlags: 0
