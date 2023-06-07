@@ -9,13 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 62288a219c58bb74ebf53f67292b9215
   - enabled: 1
-    path: Assets/Scenes/AlanTest.unity
+    path: Assets/Scenes/OldScenes/AlanTest.unity
     guid: f79678942619a66438c2864b1a50aba5
   - enabled: 1
     path: Assets/Scenes/ExploreCardenal.unity
     guid: e067090cd61d19b45b69f05de4d74b61
   - enabled: 1
-    path: Assets/Scenes/TestSampleScene.unity
+    path: Assets/Scenes/OldScenes/TestSampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
